@@ -5,6 +5,7 @@ class AuthorizationSystem {
         this.accounts = {};
         this.transactions = {};
     }
+    
 
     processInput(line) {
         const data = JSON.parse(line);

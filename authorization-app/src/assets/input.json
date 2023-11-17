@@ -1,0 +1,28 @@
+{
+    "cuenta": {
+        "id": 1,
+        " tarjeta_activa ": true,
+        " límite_disponible ": 100
+    }
+}
+{
+    "cuenta": {
+        "id": 2,
+        " tarjeta_activa ": true,
+        " límite_disponible ": 350
+    }
+}
+{
+    "cuenta": {
+        "id": 1,
+        " tarjeta_activa ": true,
+        " límite_disponible ": 350
+    }
+}
+{
+    "transacción": {
+        "comerciante": "Burger King",
+        "cantidad": 20,
+        "tiempo": "2019-02-13T10:00:00.000Z"
+    }
+}
