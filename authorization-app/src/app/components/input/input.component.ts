@@ -1,25 +1,33 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import { Component } from '@angular/core';
+import { AuthorizationService } from '../../services/authorization.service';
 
 @Component({
-  selector: 'app-input',
-  standalone: true,
-  imports: [CommonModule],
-  providers: [HttpClient],
-  templateUrl: './input.component.html',
-  styleUrl: './input.component.css'
+  selector: 'app-authorization',
+  template: `
+    <div>
+      <textarea [(ngModel)]="jsonData" placeholder="Enter JSON data"></textarea>
+      <button (click)="processInput()">Process</button>
+      <div *ngIf="data">
+        <pre>{{ data }}</pre>
+      </div>
+    </div>
+  `,
 })
-export class InputComponent implements OnInit {
+export class InputComponent {
+  jsonData: string = '';
+  data: any;
 
-  jsonData: any;
+  constructor(private authorizationService: AuthorizationService) {}
 
-  constructor(private http: HttpClient) { }
-
-  ngOnInit() {
-    this.http.get('assets/input.json').subscribe(data => {
-      this.jsonData = data;
-      console.log(this.jsonData);
-    });
-  }
+  processInput() {
+    this.authorizationService.processInput(this.jsonData).subscribe(
+      (result) => {
+        this.data = JSON.parse(this.jsonData);
+        console.log(this.data);
+      },
+      (error) => {
+        console.error('Error processing input:', error);
+      }
+    );
+  }
 }
